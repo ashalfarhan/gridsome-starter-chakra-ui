@@ -1,16 +1,12 @@
 <template>
-  <div class="layout">
-    <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-      </nav>
-    </header>
-    <slot/>
-  </div>
+  <c-box max-w="100vw" min-height="100vh" v-bind="mainStyles[colorMode]">
+    <app-header
+      :site-name="siteName"
+      :color-mode="colorMode"
+      :toggle-color-mode="toggleColorMode"
+    />
+    <slot />
+  </c-box>
 </template>
 
 <static-query>
@@ -21,30 +17,44 @@ query {
 }
 </static-query>
 
-<style>
-body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  margin:0;
-  padding:0;
-  line-height: 1.5;
-}
+<script>
+import AppHeader from "@/components/Header.vue";
+import { CBox } from "@chakra-ui/vue";
 
-.layout {
-  max-width: 760px;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
-}
-
-.nav__link {
-  margin-left: 20px;
-}
-</style>
+export default {
+  name: "DefaultLayout",
+  inject: ["$chakraColorMode", "$toggleColorMode"],
+  components: {
+    AppHeader,
+    CBox,
+  },
+  computed: {
+    siteName() {
+      return this.$static.metadata.siteName;
+    },
+    colorMode() {
+      return this.$chakraColorMode();
+    },
+    toggleColorMode() {
+      return this.$toggleColorMode;
+    },
+    theme() {
+      return this.$chakraTheme();
+    },
+  },
+  data() {
+    return {
+      mainStyles: {
+        dark: {
+          bg: "gray.700",
+          color: "whiteAlpha.900",
+        },
+        light: {
+          bg: "white",
+          color: "gray.900",
+        },
+      },
+    };
+  },
+};
+</script>
