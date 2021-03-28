@@ -1,29 +1,82 @@
 <template>
   <Layout>
-
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
+    <c-box w="container" mx="auto">
+      <!-- Learn how to use images here: https://gridsome.org/docs/images -->
+      <c-box w="md" mx="auto">
+        <c-flex justify="space-between">
+          <g-image
+            alt="Example image"
+            src="~/assets/images/favicon.png"
+            width="135"
+          />
+          <!-- Chakra provide image component as well, learn more here: 
+          https://vue.chakra-ui.com/image -->
+          <c-image :src="chakraIcon" w="250px" />
+        </c-flex>
+      </c-box>
+      <c-box text-align="center" my="8">
+        <c-heading>Hello, world!</c-heading>
+        <c-text>
+          Welcome to Gridsome Starter Chakra-UI
+        </c-text>
+        <c-link href="https://gridsome.org/docs/" target="_blank" rel="noopener"
+          >Gridsome Docs</c-link
+        >
+        <c-link
+          ml="4"
+          href="https://vue.chakra-ui.com/getting-started"
+          target="_blank"
+          rel="noopener"
+          >Chakra-UI Docs</c-link
+        >
+      </c-box>
+    </c-box>
   </Layout>
 </template>
 
 <script>
+import ChakraIcon from "@/assets/svg/logo-colored.svg";
+import ChakraIconDark from "@/assets/svg/logo-black.svg";
+import {
+  CBox,
+  CImage,
+  CFlex,
+  CHeading,
+  CText,
+  CButton,
+  CLink,
+} from "@chakra-ui/vue";
 export default {
-  metaInfo: {
-    title: 'Hello, world!'
-  }
-}
+  inject: ["$chakraColorMode"],
+  components: {
+    CBox,
+    CFlex,
+    CText,
+    CImage,
+    CLink,
+    CButton,
+    CHeading,
+  },
+  data() {
+    return {
+      ChakraIcon,
+      ChakraIconDark,
+    };
+  },
+  computed: {
+    colorMode() {
+      return this.$chakraColorMode;
+    },
+    chakraIcon() {
+      return this.colorMode === "light" ? this.ChakraIconDark : this.ChakraIcon;
+    },
+  },
+  metaInfo() {
+    return {
+      title: "Hello, world!",
+    };
+  },
+};
 </script>
 
 <style>
