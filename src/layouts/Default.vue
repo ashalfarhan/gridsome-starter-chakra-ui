@@ -1,10 +1,6 @@
 <template>
   <c-box max-w="100vw" min-height="100vh" v-bind="mainStyles[colorMode]">
-    <app-header
-      :site-name="siteName"
-      :color-mode="colorMode"
-      :toggle-color-mode="toggleColorMode"
-    />
+    <app-header :site-name="siteName" />
     <slot />
   </c-box>
 </template>
@@ -22,8 +18,8 @@ import AppHeader from "@/components/Header.vue";
 import { CBox } from "@chakra-ui/vue";
 
 export default {
+  inject: ["$chakraColorMode"],
   name: "DefaultLayout",
-  inject: ["$chakraColorMode", "$toggleColorMode"],
   components: {
     AppHeader,
     CBox,
@@ -34,12 +30,6 @@ export default {
     },
     colorMode() {
       return this.$chakraColorMode();
-    },
-    toggleColorMode() {
-      return this.$toggleColorMode;
-    },
-    theme() {
-      return this.$chakraTheme();
     },
   },
   data() {

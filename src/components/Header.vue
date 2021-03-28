@@ -1,6 +1,6 @@
 <template>
   <header>
-    <c-box mx="8" py="4">
+    <c-box mx="8" py="4" border-bottom="1px">
       <c-flex justify="space-between" align="center">
         <c-heading>
           <g-link to="/">{{ siteName }}</g-link>
@@ -20,6 +20,7 @@
 import { CFlex, CBox, CIconButton, CHeading } from "@chakra-ui/vue";
 
 export default {
+  inject: ["$chakraColorMode", "$toggleColorMode"],
   name: "AppHeader",
   components: {
     CBox,
@@ -32,15 +33,14 @@ export default {
       type: String,
       default: () => "Gridsome",
     },
-    colorMode: {
-      type: String,
-      default: () => "",
-    },
-    toggleColorMode: {
-      type: Function,
-    },
   },
   computed: {
+    colorMode() {
+      return this.$chakraColorMode();
+    },
+    toggleColorMode() {
+      return this.$toggleColorMode;
+    },
     themeIcon() {
       return this.colorMode === "light" ? "moon" : "sun";
     },
