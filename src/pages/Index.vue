@@ -1,19 +1,25 @@
 <template>
   <Layout>
-    <c-box w="container" mx="auto">
+    <c-box w="container" mx="auto" mt="24">
       <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-      <c-box w="md" mx="auto">
-        <c-flex justify="space-between">
-          <g-image
-            alt="Example image"
-            src="~/assets/images/favicon.png"
-            width="135"
-          />
-          <!-- Chakra provide image component as well, learn more here: 
+      <c-flex
+        :w="imageContainer"
+        :direction="imageFlex"
+        :h="imageContainerHeight"
+        mx="auto"
+        align="center"
+        justify="space-between"
+      >
+        <g-image
+          alt="Example image"
+          src="~/assets/images/favicon.png"
+          width="135"
+        />
+        <!-- Chakra provide image component as well, learn more here: 
           https://vue.chakra-ui.com/image -->
-          <c-image :src="chakraIcon" w="250px" />
-        </c-flex>
-      </c-box>
+
+        <c-image :src="chakraIcon" w="250px" />
+      </c-flex>
       <c-box text-align="center" my="8">
         <c-heading>Hello, world!</c-heading>
         <c-text>
@@ -61,11 +67,18 @@ export default {
     return {
       ChakraIcon,
       ChakraIconDark,
+      imageFlex: ["column", "column", "row", "row"],
+      imageContainer: ["sm", "md"],
+      imageContainerHeight: {
+        sm: "240px",
+        base: "240px",
+        md: "auto",
+      },
     };
   },
   computed: {
     colorMode() {
-      return this.$chakraColorMode;
+      return this.$chakraColorMode();
     },
     chakraIcon() {
       return this.colorMode === "light" ? this.ChakraIconDark : this.ChakraIcon;
