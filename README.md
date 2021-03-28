@@ -1,14 +1,29 @@
-# Default starter for Gridsome
+# Gridsome starter with Chakra-UI
 
-This is the project you get when you run `gridsome create new-project`.
+A simple gridsome starter combine with Chakra-UI component library
 
-### 1. Install Gridsome CLI tool if you don't have
+Preview can be seen at [this](https://gridsome-starter-chakra-ui.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/2ef19292-de02-40ef-a0e3-8c3b3a0705e4/deploy-status)](https://app.netlify.com/sites/gridsome-starter-chakra-ui/deploys)
+
+## To use this template, you can run
+
+```bash
+git clone https://github.com/ashalfarhan/gridsome-starter-chakra-ui.git
+
+cd gridsome-starter-chakra-ui
+
+yarn /or/ npm install
+
+gridsome develop // yarn develop // npm run develop
+```
+
+## Incase you haven't already installed gridsome-cli
+
+You can easily run this command
 
 `npm install --global @gridsome/cli`
 
-### 2. Create a Gridsome project
+or:
 
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
-3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌
+`yarn global add @gridsome/cli`
