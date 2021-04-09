@@ -12,7 +12,7 @@ Preview can be visit at [this](https://gridsome-starter-chakra-ui.netlify.app/)
 # Clone with git
 git clone https://github.com/ashalfarhan/gridsome-starter-chakra-ui.git
 # or using gridsome-cli
-gridsome create my-website https://github.com/gridsome/gridsome-starter-chakra-ui.git
+gridsome create my-website https://github.com/ashalfarhan/gridsome-starter-chakra-ui.git
 
 cd gridsome-starter-chakra-ui
 
