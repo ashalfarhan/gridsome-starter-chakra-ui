@@ -26,7 +26,7 @@ gridsome develop
 # or
 npm run develop
 # or
-yarn dev
+yarn develop
 ```
 
 ## Incase you haven't already installed gridsome-cli
